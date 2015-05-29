@@ -1,0 +1,58 @@
+- @page_title = 'Checkout'
+= render 'checkout_sidebar'
+
+.checkout
+  %p.secure ارتباط امن
+  %h2 سفارش خود را نهایی کنید
+  %p.intro
+    بسیار عالی! شما آماده اید تا سفارش خود را نهایی کنید، فقط اطلاعات زیر را تکمیل کنید  تا ما خرید شما را آماده ارسال کنیم
+
+  %h3 سبد خرید خود را مرور کنید
+  = render 'shared/order_items', :order => @order
+  .btn.btn-warning= link_to "پرداخت", checkout_path, :class => 'checkout'
+  - unless @order.delivery_required? && @order.delivery_service.nil?
+    %h3 فورم زیر را به دقت تکمیل کنید تا سفارش شما نهایی شود
+
+    = form_for @order, :url => checkout_path, :html => {:class => 'checkout disableable'} do |f|
+      = f.error_messages
+      .customer
+        = field_set_tag do
+          %dl
+            %dt= f.label :first_name, "نام و نام خانوادگی", :class => 'req'
+            %dd.name
+              = f.text_field :first_name, :placeholder => 'نام'
+              = f.text_field :last_name, :placeholder => 'نام خانوادگی'
+          %dl
+            %dt= f.label :company, "نام مدرسه‌(اختیاری)"
+            %dd= f.text_field :company
+          %dl
+            %dt= f.label :email_address, 'آدرس پست الکترونیکی', :class => 'req'
+            %dd= f.text_field :email_address
+          %dl
+            %dt= f.label :phone_number, 'شماره تماس تلفنی', :class => 'req'
+            %dd= f.text_field :phone_number
+
+        = field_set_tag do
+          %dl
+            %dt= f.label :billing_address1, "آدرس پستی دقیق", :class => 'req'
+            %dd= f.text_field :billing_address1, :placeholder => "خیابان اصلی"
+            %dd= f.text_field :billing_address3, :placeholder => "خیابان فرعی"
+            %dd= f.text_field :billing_address4, :placeholder => "کوچه"
+            %dd= f.text_field :billing_postcode, :placeholder => "پلاک", :class => 'postcode'
+            -#%dd= f.collection_select :billing_country_id, Shoppe::Country.ordered, :id, :name
+            %dd
+              = f.check_box :separate_delivery_address
+              = f.label :separate_delivery_address, "آیا به آدرس دیگری می خواهید بفرستید؟"
+          %dl.delivery
+            %dt= f.label :delivery_address1, "آدرس دریافت سفارش", :class => 'req'
+            %dd= f.text_field :delivery_name, :placeholder => "نام محل دریافتی"
+            %dd= f.text_field :delivery_address1, :placeholder => "خیابان اصلی"
+            %dd= f.text_field :delivery_address3, :placeholder => "خیابان فرعی"
+            %dd= f.text_field :delivery_address4, :placeholder => "کوچه"
+            %dd= f.text_field :delivery_postcode, :placeholder => "پلاک", :class => 'postcode'
+            -#%dd= f.collection_select :delivery_country_id, Shoppe::Country.ordered, :id, :name
+
+      %p.submit= f.submit "ثبت نهایی" , :class => "btn btn-success btn-block"
+
+  - else
+    %p Please call us to place this order.

@@ -1,0 +1,46 @@
+%table.orderItems
+  %thead
+    %tr
+      %td تعداد
+      %td کتاب
+      %td قیمت
+      %td= Shoppe.settings.tax_name
+      %td جمع
+  %tbody
+    - for item in order.order_items
+      %tr
+        %td.quantity
+          - unless defined?(readonly)
+            %span
+              = link_to "+", adjust_basket_item_quantity_path(item.id), :method => :post, :class => 'ajax'
+              = link_to "-", adjust_basket_item_quantity_path(item.id), :method => :delete, :class => 'ajax'
+          = item.quantity
+        %td.product
+          = item.ordered_item.full_name
+          - unless defined?(readonly)
+            = link_to "Delete", remove_basket_item_path(item), :method => :delete, :class => 'delete ajax'
+        %td.money.price= number_to_currency item.sub_total
+        %td.money.tax= number_to_currency item.tax_amount
+        %td.money.total= number_to_currency item.total
+  %tfoot
+    - if order.delivery_service
+      %tr.delivery
+        %td.method{:colspan => 4}
+          - if defined?(readonly)
+            = order.delivery_service.name
+          - else
+            = form_tag change_delivery_service_path do 
+              = select_tag 'delivery_service', options_from_collection_for_select(order.available_delivery_services, :id, :name, order.delivery_service.id)
+        %td.money= number_to_currency order.delivery_price
+    %tr.subtotal
+      %td{:colspan => 4} هزینه پیک
+      %td.money= number_to_currency 0
+    %tr.tax
+      %td{:colspan => 4}= "جمع کل"
+      %td.money= number_to_currency order.total_before_tax
+    %tr.total
+      %td{:colspan => 4} جمع کل قابل پرداخت به همراه تخفیف
+      %td.money= number_to_currency order.total
+%div.button
+
+

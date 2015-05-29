@@ -1,0 +1,10 @@
+- @page_title = 'سبد خرید'
+.checkout
+  %h2 سبد خرید شما
+  %p.intro
+  کالای لیست شده در زیر در حال حاضر در سبد خرید شما موجود اند. اگر آماده به پرداخت آنها هستید فقط کافیست دکمه پرداخت در سمت راست را بزنید، ما چند سوال کوتاه از شما می پرسیم و سفارش شما آماده ارسال خواهد بود
+  %br
+  %br
+  = render 'shared/order_items', :order => current_order
+  .btn.btn-warning= link_to "پرداخت", checkout_path, :class => 'checkout'
+  

@@ -1,0 +1,101 @@
+%html
+  %head
+    %title #{@page_title} - #{Shoppe.settings.store_name}
+    = favicon_link_tag 'Dandelion1.png'
+    = stylesheet_link_tag :application , media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag :application
+    = csrf_meta_tags
+    = yield :head
+  %body
+
+    -#%div.demo
+      .inner
+        %ul.links
+          %li= link_to "admin center", "/ghasedak"
+
+    = display_flash
+
+    / The main header displayed on all pages
+    / Sometimes will be shorted as the page content dictates.
+    %header.main{:class => @full_header ? 'full' : 'basic'}
+      .inner
+        / Primary navigation
+        %nav.main
+          %ul
+            %li= link_to "صفحه اصلی", root_path, :nav_item => :home
+            %li
+              = link_to "دسته بندی ها", catalogue_path, :nav_item => :catalogue, :class => 'noborder'
+              %ul
+                - for category in Shoppe::ProductCategory.ordered
+                  %li= link_to category.name, products_path(category.permalink)
+            %li= link_to "مزایای خرید از ما", page_path(:why), :nav_item => :why
+            %li= link_to "سوالات متداول", page_path(:faqs), :nav_item => :faqs
+            %li= link_to "در ار تباط باش", page_path(:contact), :nav_item => :contact
+          %h3.btn.btn-default.pull-right= link_to "قاصدک", root_path
+
+        - if @full_header
+          %h2 به <em>قاصدک</em> خوش آمدید
+          %p.intro دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر
+
+      - if @full_header
+        .bar
+          .inner
+            %p.call اگر سوالی داری همین امروز با ما با شماره <b>8-88516067</b> تماس بگیر
+
+            %p.offer اولین بانک کتاب ارائه دهنده تخفیف
+
+
+    / Main content section
+    %section.content
+      .inner
+
+        / Sidebar
+        %section.sidebar
+          - if content_for?(:sidebar)
+            = yield :sidebar
+          - else
+            = render 'shared/basket'
+            = render 'shared/reasons'
+
+        / Primary section
+        %section.primary
+          = yield
+
+    / Footer
+    %footer.main
+      .inner
+
+        / Useful footer links (policies etc...)
+        %ul.links
+          %li= link_to "شرایط و قوانین", page_path(:terms)
+          %li= link_to "حفظ حریم خصوصی", page_path(:privacy)
+          %li= link_to "قوانین بازگشتی ها", page_path(:returns)
+          %li= link_to "سوالات متداول", page_path(:faqs)
+          %li= link_to "ورود ادمین", "#"
+
+        -#%li= link_to "Cookie policy", page_path(:cookies)
+
+        .callUs
+          %p سوالی داری؟ همین الان زنگ بزن
+          %p.number 88 51 60 67-8
+          %p ما تا ساعت ۱۲ باز هستیم، جمعه تا جمعه
+
+          / Links to social media
+          %ul.social
+            %li.twitter= link_to "Twitter", 'http://twitter.com/niftyware'
+            %li.facebook= link_to "Facebook", "http://facebook.com/niftyware"
+            %li.pinterest= link_to "Pinterest", "http://pinterest.com"
+            %li.linkedin= link_to "Linked In", "http://linkedin.com"
+            %li.vimeo= link_to "Vimeo", "http://vimeo.com"
+            %li.youtube= link_to "Youtube", "http://youtube.com"
+
+        / Copyright & trademark information
+        .copyright
+          %p.en_font &copy; #{Date.today.year}Ghasedak. All Rights Reserved.
+          %p All third party logos &amp; product images &copy; their respective owners.
+          %p.en_font
+            Ghasedak is a trading name of Niftyware Limited.<br />
+            Company registration number: 8514362.<br />
+            VAT registration number: GB 123 123 123.
+            designer Rights Reserved.
+

@@ -1,0 +1,11 @@
+- @page_title = 'Checkout'
+= render 'checkout_sidebar'
+.checkout
+  %h2 ثبت نهایی
+  %p.intro
+    بسیار عالی! ما الان همه اطلاعاتی را که نیاز داشتیم تا سفارش شما را ثبت کنیم در اختیار داریم، اگر شما راضی هستید موارد زیر را بررسی کنید  و دکمه ثبت سفارش را بزنید
+
+
+  = render 'shared/order_items', :order => current_order, :readonly => true
+  = form_tag checkout_confirmation_path, :method => :patch, :class => 'disableable' do
+    %p.submit= submit_tag "ثبت سفارش", :class => 'order btn btn-primary btn-block'
