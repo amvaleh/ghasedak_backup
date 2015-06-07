@@ -62,3 +62,18 @@
           %td= link_to attribute.value, product_filter_path(:key => attribute.key, :value => attribute.value)
   .description
     = markdown @product.description
+    %hr
+    - @comments.each do |cm|
+      %div.alert.alert-info.product
+        %span.btn-info= cm.user.phone_number
+        %span.pull-left= timeago_tag(cm.created_at , :lang => :fa) 
+        %p= cm.content
+        -if current_user == cm.user
+          = link_to "حذف" , cm , method: :delete, data: { confirm: 'آیا مطمئنی؟' }, :class=>"pull-left btn btn-xs btn-danger" 
+    - if  user_signed_in?    
+      = render 'comments/form'
+    - else
+      %p.alert شما باید عضو باشید تا بتوانید نظر بدهید
+      %button.btn.btn-primary.btn-block= link_to 'ثبت نام', new_user_registration_path
+
+
