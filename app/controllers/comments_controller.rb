@@ -36,7 +36,8 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    respond_with(@comment)
+    # respond_with(@comment)
+    redirect_to :back
   end
 
   private
