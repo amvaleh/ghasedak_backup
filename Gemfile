@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'rails', '4.2.0.beta2'
+gem 'rails-timeago', '~> 2.0'
 gem 'sqlite3'
+gem 'acts_as_commentable'
 #gem 'sprockets-rails' , '~> 2.0'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'mysql2'
@@ -11,12 +13,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails' , '3.0.4'
 gem 'redcarpet'
+# gem 'devise'
+gem 'devise', '~> 3.4.0'
 gem 'faker'
 #gem 'shoppe' , :git => "http://github.com/amvaleh/myshoppe.git" 
 #, :git => "http://github.com/amvaleh/shoppe.git"
 gem 'thin'
 gem 'byebug'
 gem 'bcrypt-ruby'
+gem 'protected_attributes'
 group :development do
   gem 'capistrano'
 end

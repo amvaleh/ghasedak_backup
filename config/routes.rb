@@ -1,6 +1,9 @@
 ExampleStore::Application.routes.draw do
 
-  mount Shoppe::Engine => "/shoppe"
+  resources :comments
+
+  devise_for :users
+  mount Shoppe::Engine => "/ghasedak"
 #  mount Shoppe::Engine => "/ghasedak"
   #
   # Shoppe admin interface

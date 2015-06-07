@@ -22,7 +22,9 @@ class ProductsController < ApplicationController
   end
   
   def show
-    @attributes = @product.product_attributes.public.to_a
+    @attributes = @product.product_attributes.publicly_accessible.to_a
+    @comment = Comment.new
+    @comments = Comment.where(:product_id => @product.id).reverse_order
   end
   
   def add_to_basket

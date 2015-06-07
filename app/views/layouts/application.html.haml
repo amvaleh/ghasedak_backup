@@ -31,7 +31,12 @@
             %li= link_to "مزایای خرید از ما", page_path(:why), :nav_item => :why
             %li= link_to "سوالات متداول", page_path(:faqs), :nav_item => :faqs
             %li= link_to "در ار تباط باش", page_path(:contact), :nav_item => :contact
-          %h3.btn.btn-default.pull-right= link_to "قاصدک", root_path
+          / %h3.btn.btn-default.pull-right= link_to "قاصدک", root_path
+          -if user_signed_in? 
+            %h3.btn.btn-primary.pull-right= link_to 'خروج', destroy_user_session_path, :method => :delete
+          -else
+            %h3.btn.btn-primary.pull-right= link_to 'ورود', new_user_session_path
+            %h3.btn.btn-primary.pull-right= link_to 'ثبت نام', new_user_registration_path
 
         - if @full_header
           %h2 به <em>قاصدک</em> خوش آمدید
@@ -94,8 +99,8 @@
           %p.en_font &copy; #{Date.today.year}Ghasedak. All Rights Reserved.
           %p All third party logos &amp; product images &copy; their respective owners.
           %p.en_font
-            Ghasedak is a trading name of Niftyware Limited.<br />
-            Company registration number: 8514362.<br />
+            Ghasedak is a trading name of Ghasedakbook Limited.<br />
+            Instuitute registration number: 8514362.<br />
             VAT registration number: GB 123 123 123.
             designer Rights Reserved.
 

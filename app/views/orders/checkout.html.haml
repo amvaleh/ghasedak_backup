@@ -30,8 +30,10 @@
             %dd= f.text_field :email_address
           %dl
             %dt= f.label :phone_number, 'شماره تماس تلفنی', :class => 'req'
-            %dd= f.text_field :phone_number
-
+            -if user_signed_in?
+              %dd= f.text_field :phone_number , :class=> 'req' , value: current_user.phone_number 
+            -else
+              %dd= f.text_field :phone_number , :class=> 'req'  
         = field_set_tag do
           %dl
             %dt= f.label :billing_address1, "آدرس پستی دقیق", :class => 'req'
@@ -55,4 +57,4 @@
       %p.submit= f.submit "ثبت نهایی" , :class => "btn btn-success btn-block"
 
   - else
-    %p Please call us to place this order.
+    %p لطفا برای ایجاد این سفارش با ما تماس بگیرید .
