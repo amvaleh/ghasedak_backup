@@ -66,7 +66,7 @@
     - @comments.each do |cm|
       %div.alert.alert-info.product
         %span.btn-info= cm.user.phone_number
-        %span.pull-left= timeago_tag(cm.created_at , :lang => :fa) 
+        %span.pull-left= timeago_tag(cm.created_at , :lang => :fa )
         %p= cm.content
         -if current_user == cm.user
           = link_to "حذف" , cm , method: :delete, data: { confirm: 'آیا مطمئنی؟' }, :class=>"pull-left btn btn-xs btn-danger" 
