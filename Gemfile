@@ -26,5 +26,5 @@ group :development do
   gem 'capistrano'
 end
 #gem 'shoppe', '~> 1.0'
-gem 'shoppe' , '1.0.5'
+gem 'shoppe' , '1.0.7'
 gem 'arel', '6.0.0.beta2'
