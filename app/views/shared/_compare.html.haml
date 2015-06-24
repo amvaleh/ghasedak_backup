@@ -1,0 +1,14 @@
+.basket
+  %p.empty <b> لیست مقایسه شما</b>
+  - if not session[:object_one].nil?
+  - @product1 = Shoppe::Product.find(session[:object_one])
+    %span.pull-right 1)
+    %p.quantity= (link_to @product1.name , product_path(@product1.product_category.permalink, @product1.permalink))
+  - if not session[:object_two].nil?
+  - @product2 =  Shoppe::Product.find(session[:object_two])
+    %span.pull-right 2)
+    %p.quantity= (link_to @product2.name , product_path(@product2.product_category.permalink, @product2.permalink))
+  - if session[:object_one].nil? and session[:object_two].nil?
+    %p.empty <b>موردی در لیست مقایسه نمی باشد</b>
+  %p.buttons.text-right
+    = link_to "مشاهده", show_list_path

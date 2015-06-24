@@ -46,12 +46,12 @@
               %li.item.datasheet= link_to "Read product datasheet", @product.data_sheet.path
             - unless @product.in_the_box.blank?
               %li.item.box
-                = link_to "What's in the box?"
+                = link_to "یک نکته برای تو!"
                 %div.in_the_box
-                  %h3 What's in the box?
+                  %h3 یک نکته برای تو!
                   = markdown @product.in_the_box
-            %li.item.ask= mail_to Shoppe.settings.email_address, "Ask us a question about this", :subject => "Question about the #{@product.name}"
-
+            -#%li.item.ask= mail_to Shoppe.settings.email_address, "Ask us a question about this", :subject => "Question about the #{@product.name}"
+            %li.item.ask= link_to "مقایسه با یک کالای دیگر", add_object_path(:product => @product)
     %hr
 
   - unless @attributes.empty?

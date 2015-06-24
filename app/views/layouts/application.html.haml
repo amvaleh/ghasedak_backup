@@ -26,8 +26,10 @@
             %li
               = link_to "دسته بندی ها", catalogue_path, :nav_item => :catalogue, :class => 'noborder'
               %ul
-                - for category in Shoppe::ProductCategory.ordered
-                  %li= link_to category.name, products_path(category.permalink)
+                - for category in Shoppe::ProductCategory.without_parent.ordered
+                  %tr
+                    %td= link_to category.name, products_path(category.permalink)
+                    = nested_product_category_rows(category)  
             %li= link_to "مزایای خرید از ما", page_path(:why), :nav_item => :why
             %li= link_to "سوالات متداول", page_path(:faqs), :nav_item => :faqs
             %li= link_to "در ار تباط باش", page_path(:contact), :nav_item => :contact
@@ -60,6 +62,7 @@
             = yield :sidebar
           - else
             = render 'shared/basket'
+            = render 'shared/compare'
             = render 'shared/reasons'
 
         / Primary section

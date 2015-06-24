@@ -12,7 +12,11 @@ class ProductsController < ApplicationController
   def index
     @products = @product_category.products.includes(:default_image, :product_categories, :variants).root.active
   end
-  
+
+  def compare
+
+  end
+
   def filter
     @products = Shoppe::Product.active.with_attributes(params[:key].to_s, params[:value].to_s)
   end

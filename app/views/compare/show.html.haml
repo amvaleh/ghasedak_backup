@@ -1,0 +1,137 @@
+- active_nav_item :catalogue
+- @page_title = @product1.name + " - " + @product1.product_category.name
+.product.col-md-6.pull-right
+  - if @product1.default_image
+    .img{:style => "background-image:url(#{@product1.default_image.path})"}
+  %h2= @product1.name
+  %p.intro= @product1.short_description
+
+  - if @product1.has_variants?
+    %table.variants
+      - for variant in @product1.variants
+        %tr
+          %td
+            - if variant.in_stock?
+              %p.stock.yes In stock
+            - else
+              %p.stock.no Out of stock
+            %h4= variant.name
+            %p.price= number_to_currency variant.price
+          %td.buy
+            = form_tag buy_product_path(@product1.product_category.permalink, @product1.permalink, :variant => variant.id), :class => (variant.in_stock? ? 'in-stock' : 'no-stock') do
+              %p
+                = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !variant.in_stock?
+                = submit_tag 'اضافه به سبد خرید', :disabled => !variant.in_stock?
+  - else
+    .optionsBox
+      .top
+        %p.price= number_to_currency @product1.price
+        = form_tag buy_product_path(@product1.product_category.permalink, @product1.permalink), :class => (@product1.in_stock? ? 'in-stock' : 'no-stock') do
+          %p
+            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !@product1.in_stock?
+            = submit_tag 'اضافه به سبد خرید', :disabled => !@product1.in_stock?
+      .bottom
+        .stock
+          -#- if @product1.in_stock?
+            %p.yes موجود
+            %p.time سفارش در <b>#{hour_until_next_delivery}</b> ساعت و <b>#{minute_until_next_delivery}</b> دقیقه بعدی برای ارسال آماده است
+          / #{next_delivery_day}.
+          -#- else
+            %p.no تمام شده
+            %p.time متاسفیم - به تعداد کافی از این کالا در انبار موجود نیست.
+        / Sorry - we don't have any stock of this product at the moment. #{link_to "Let me know when you do"}.
+        .links
+          %ul
+            - if @product1.data_sheet
+              %li.item.datasheet= link_to "Read product datasheet", @product1.data_sheet.path
+            - unless @product1.in_the_box.blank?
+              %li.item.box
+                = link_to "یک نکته برای تو !"
+                %div.in_the_box
+                  %h3 What's in the box?
+                  = markdown @product1.in_the_box
+            -#%li.item.ask= mail_to Shoppe.settings.email_address, "Ask us a question about this", :subject => "Question about the #{@product1.name}"
+    %hr
+
+  - unless @attributes1.empty?
+    %table.attributes
+      - for attribute in @attributes1
+        %tr
+          %th= attribute.key
+          %td= link_to attribute.value, product_filter_path(:key => attribute.key, :value => attribute.value)
+  .description
+    = markdown @product1.description
+    %hr
+    - @comments1.each do |cm|
+      %div.alert.alert-info.product
+        %span.btn-info= cm.user.phone_number
+        %span.pull-left= timeago_tag(cm.created_at , :lang => :fa )
+        %p= cm.content
+-#*********************************************************************second product
+.product.col-md-6.pull-right
+  - if @product2.default_image
+    .img{:style => "background-image:url(#{@product2.default_image.path})"}
+  %h2= @product2.name
+  %p.intro= @product2.short_description
+
+  - if @product2.has_variants?
+    %table.variants
+      - for variant in @product2.variants
+        %tr
+          %td
+            - if variant.in_stock?
+              %p.stock.yes In stock
+            - else
+              %p.stock.no Out of stock
+            %h4= variant.name
+            %p.price= number_to_currency variant.price
+          %td.buy
+            = form_tag buy_product_path(@product2.product_category.permalink, @product2.permalink, :variant => variant.id), :class => (variant.in_stock? ? 'in-stock' : 'no-stock') do
+              %p
+                = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !variant.in_stock?
+                = submit_tag 'اضافه به سبد خرید', :disabled => !variant.in_stock?
+  - else
+    .optionsBox
+      .top
+        %p.price= number_to_currency @product2.price
+        = form_tag buy_product_path(@product2.product_category.permalink, @product2.permalink), :class => (@product2.in_stock? ? 'in-stock' : 'no-stock') do
+          %p
+            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), :disabled => !@product2.in_stock?
+            = submit_tag 'اضافه به سبد خرید', :disabled => !@product2.in_stock?
+      .bottom
+        .stock
+        -#- if @product2.in_stock?
+            %p.yes موجود
+            %p.time سفارش در <b>#{hour_until_next_delivery}</b> ساعت و <b>#{minute_until_next_delivery}</b> دقیقه بعدی برای ارسال آماده است
+        / #{next_delivery_day}.
+        -#- else
+            %p.no تمام شده
+            %p.time متاسفیم - به تعداد کافی از این کالا در انبار موجود نیست.
+        / Sorry - we don't have any stock of this product at the moment. #{link_to "Let me know when you do"}.
+        .links
+          %ul
+            - if @product2.data_sheet
+              %li.item.datasheet= link_to "Read product datasheet", @product2.data_sheet.path
+            - unless @product2.in_the_box.blank?
+              %li.item.box
+                = link_to "یک نکته برای تو!"
+                %div.in_the_box
+                  %h3 What's in the box?
+                  = markdown @product2.in_the_box
+            -#%li.item.ask= mail_to Shoppe.settings.email_address, "Ask us a question about this", :subject => "Question about the #{@product2.name}"
+    %hr
+
+  - unless @attributes2.empty?
+    %table.attributes
+      - for attribute in @attributes2
+        %tr
+          %th= attribute.key
+          %td= link_to attribute.value, product_filter_path(:key => attribute.key, :value => attribute.value)
+  .description
+    = markdown @product2.description
+    %hr
+    - @comments2.each do |cm|
+      %div.alert.alert-info.product
+        %span.btn-info= cm.user.phone_number
+        %span.pull-left= timeago_tag(cm.created_at , :lang => :fa )
+        %p= cm.content

@@ -44,7 +44,13 @@ ExampleStore::Application.routes.draw do
   # Static pages
   #
   get ':action', :controller => 'pages', :as => 'page'
-  
+
+  #
+  #compare
+  #
+  match "/compare/new" => "compare#add_object", :as => 'add_object' , :via => :get
+  match "compare/show" => "compare#show" , :as => 'show_list' , :via  => :get
+
   # 
   # Homepage
   #
