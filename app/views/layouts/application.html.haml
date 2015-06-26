@@ -21,7 +21,7 @@
       .inner
         / Primary navigation
         %nav.main
-          %ul
+          %ul.wow.animated.fadeIn
             %li= link_to "صفحه اصلی", root_path, :nav_item => :home
             %li
               = link_to "دسته بندی ها", catalogue_path, :nav_item => :catalogue, :class => 'noborder'
@@ -33,13 +33,15 @@
             %li= link_to "مزایای خرید از ما", page_path(:why), :nav_item => :why
             %li= link_to "سوالات متداول", page_path(:faqs), :nav_item => :faqs
             %li= link_to "در ار تباط باش", page_path(:contact), :nav_item => :contact
-          / %h3.btn.btn-default.pull-right= link_to "قاصدک", root_path
-          -if user_signed_in? 
-            %h3.btn.btn-primary.pull-right= link_to 'خروج', destroy_user_session_path, :method => :delete
-          -else
-            %h3.btn.btn-primary.pull-right= link_to 'ورود', new_user_session_path
-            %h3.btn.btn-primary.pull-right= link_to 'ثبت نام', new_user_registration_path
-
+            %li.float-right{:style => "width: 250px;"}
+              =form_tag({controller: "/pages" , action: "do_search" },:format => "js",method: "get" , id:"main_search") do
+                =text_field_tag :query,nil,placeholder:"جستجوی همه چیز",:style =>"text-align: center; " , autocomplete: :off , :class => "form-control "
+              %ul{:class=>"mylist",:id=> "result"}
+            -if user_signed_in?
+              =link_to 'خروج', destroy_user_session_path, :method => :delete , :class => "btn btn-primary pull-right"
+            -else
+              =link_to 'ورود', new_user_session_path , :class => "btn btn-sm btn-default pull-right"
+              =link_to 'ثبت نام', new_user_registration_path , :class => "btn btn-sm btn-default pull-right"
         - if @full_header
           %h2 به <em>قاصدک</em> خوش آمدید
           %p.intro دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر
@@ -71,7 +73,7 @@
 
     / Footer
     %footer.main
-      .inner
+      .inner.animated.wow.fadeInUp
 
         / Useful footer links (policies etc...)
         %ul.links

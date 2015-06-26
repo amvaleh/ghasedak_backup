@@ -1,5 +1,5 @@
 - active_nav_item :catalogue
-- @page_title = @product1.name + " - " + @product1.product_category.name
+- @page_title = "مقایسه"+ @product1.name + " - " + @product1.product_category.name
 .product.col-md-6.pull-right
   - if @product1.default_image
     .img{:style => "background-image:url(#{@product1.default_image.path})"}

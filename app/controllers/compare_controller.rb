@@ -1,6 +1,8 @@
 class CompareController < ApplicationController
 
   def add_object
+    puts session[:object_one].to_s + "//1"
+    puts session[:object_two].to_s + "//2"
     if session[:object_one].nil?
       session[:object_one] = params[:product]
       redirect_to :back , :alert => "کالا به لیست مقایسه اضافه شد"

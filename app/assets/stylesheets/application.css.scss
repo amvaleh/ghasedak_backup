@@ -1,4 +1,6 @@
 //= require reset
+//= require comments
+//= require search
 //= require bootstrap.min
 
 
@@ -77,7 +79,7 @@ div#flash-alert { background:#a13361; color:#fff; text-align:center; padding:8px
 // Primary header
 //
 header.main {
-	background:image-url('header.jpg') #0a1f20 50% 50%;
+	background:image-url('header.jpg') rgb(10, 130, 134) 50% 50%;
 	background-size:cover;
 	color:#fff;
 	font-size:0.9em;
@@ -147,7 +149,7 @@ header.main {
 	// The basic header
 	//
 	&.basic {
-		background:#112326;
+		background:rgb(10, 130, 134);
 		nav.main { padding-top:15px; padding-bottom:15px;}
 		nav.main h1 { padding-top:15px; margin-bottom:0;}
 		nav.main ul { padding-top:8px;}
@@ -654,8 +656,8 @@ section.content {
 // Footer
 //
 footer.main {
-    background-color:#112326;
-	color:#53686B;
+  background-color: #99c2ec;
+  color: #171C1D;
 	font-size:0.9em;
 	padding:40px 0;
 	overflow:hidden;
@@ -666,7 +668,7 @@ footer.main {
 		width:26%;
 		float:left;
 		line-height:1.8;
-		color:#97AEB2;
+		color:#322C2C;
 	}
 	
 	div.callUs {

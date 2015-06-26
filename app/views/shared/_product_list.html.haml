@@ -1,6 +1,6 @@
 %ul.products
   - for product in products.includes(:default_image, :product_categories)
-    %li
+    %li.wow.fadeInDown.animated
       .img{:style => product.default_image ? "background-image:url(#{product.default_image.path})" : ''}
       %h4= link_to product.name, product_path(product.product_category.permalink, product.permalink)
       %p.info= truncate product.short_description, :length => 90

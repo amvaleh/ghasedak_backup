@@ -1,8 +1,8 @@
 ExampleStore::Application.routes.draw do
 
+  devise_for :users
   resources :comments
 
-  devise_for :users
   mount Shoppe::Engine => "/ghasedak"
 #  mount Shoppe::Engine => "/ghasedak"
   #
@@ -43,7 +43,7 @@ ExampleStore::Application.routes.draw do
   #
   # Static pages
   #
-  get ':action', :controller => 'pages', :as => 'page'
+  # get ':action', :controller => 'pages', :as => 'page'
 
   #
   #compare
@@ -51,9 +51,17 @@ ExampleStore::Application.routes.draw do
   match "/compare/new" => "compare#add_object", :as => 'add_object' , :via => :get
   match "compare/show" => "compare#show" , :as => 'show_list' , :via  => :get
 
-  # 
+  #
   # Homepage
   #
   root :to => 'pages#home'
-  
+
+
+  resources :pages do
+    collection do
+      get :do_search
+    end
+  end
+
+
 end

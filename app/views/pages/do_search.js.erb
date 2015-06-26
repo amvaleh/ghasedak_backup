@@ -1,0 +1,10 @@
+$('#result').css('display','block');
+$('#result').empty();
+
+<% @result.each do |res| %>
+$('#result').append('<li class="li_style "><%if res.default_image%><%= image_tag res.default_image.path , :class => "pull-left img-responsive img-circle",:width => "35px" %><%end%><%= link_to res.name , product_path(res.product_category.permalink, res.permalink) , class: "li_link"%></li>')
+<% end %>
+
+<% @result2.each do |res| %>
+$('#result').append('<li class="li_style"><img src="assets/category.png" class="img-rounded pull-left" ><%= link_to(products_path(res.permalink), {:class => "li_link"}) do %> <small>دسته بندی</small><span class="cat_style"><%=res.name%></span><%end%></li>')
+<% end %>
