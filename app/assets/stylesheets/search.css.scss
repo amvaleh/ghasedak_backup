@@ -1,0 +1,32 @@
+.mylist{
+  width: 250;
+//  background: beige;
+//  border-radius: 5px;
+//  color: black;
+}
+
+.li_style{
+  border-top: solid 1px black;
+  padding: 10px;
+  background: #ffffff !important;
+  padding-bottom: 7px;
+}
+
+.li_style:hover{
+  background: #89d9da !important;
+//  color: #000000 !important;
+}
+
+.cat_style{
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.cat_style:hover{
+//  color: #000000;
+}
+
+
+.li_link:hover{
+  color: #da4532 !important;
+}
