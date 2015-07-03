@@ -3,7 +3,7 @@ module ApplicationHelper
   def nested_product_category_spacing_adjusted_for_depth(category, relative_depth)
     depth = category.depth - relative_depth
     spacing = depth < 2 ? 0.8 : 1.5
-    ("<span style=' margin-right:#{50*spacing}px;'></span>"*category.depth).html_safe
+    ("<br><span style=' margin-right:#{20*spacing}px;'></span>"*category.depth).html_safe
   end
 
   def nested_product_category_rows(category, current_category = nil, link_to_current = true, relative_depth = 0)
@@ -14,16 +14,17 @@ module ApplicationHelper
           s << "<td>"
           if child == current_category
             if link_to_current == false
-              s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth} &#8627; #{child.name} (#{t('shoppe.product_category.nesting.current_category')})"
+              s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{child.name} (#{t('shoppe.product_category.nesting.current_category')})"
             else
-              s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth} &#8627; #{link_to(child.name, products_path(child.permalink)).html_safe} (#{t('shoppe.product_category.nesting.current_category')})"
+              s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe} (#{t('shoppe.product_category.nesting.current_category')})"
             end
           else
-            s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth} &#8627; #{link_to(child.name, products_path(child.permalink)).html_safe}"
+            s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe}"
           end
           s << "</td>"
           s << "</tr>"
           s << nested_product_category_rows(child, current_category, link_to_current, relative_depth)
+          s << "<br>"
         end
       end.html_safe
     else

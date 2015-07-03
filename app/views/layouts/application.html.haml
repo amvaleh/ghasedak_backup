@@ -17,41 +17,43 @@
 
     / The main header displayed on all pages
     / Sometimes will be shorted as the page content dictates.
+
     %header.main{:class => @full_header ? 'full' : 'basic'}
       .inner
         / Primary navigation
         %nav.main
           %ul.wow.animated.fadeIn
-            %li= link_to "صفحه اصلی", root_path, :nav_item => :home
             %li
+              =link_to root_path do
+                =image_tag "logo.png" , width: "90"
+            -#%li= link_to "صفحه اصلی", root_path, :nav_item => :home
+            -#%li
               = link_to "دسته بندی ها", catalogue_path, :nav_item => :catalogue, :class => 'noborder'
               %ul
                 - for category in Shoppe::ProductCategory.without_parent.ordered
                   %tr
                     %td= link_to category.name, products_path(category.permalink)
-                    = nested_product_category_rows(category)  
+                    = nested_product_category_rows(category)
             %li= link_to "مزایای خرید از ما", page_path(:why), :nav_item => :why
             %li= link_to "سوالات متداول", page_path(:faqs), :nav_item => :faqs
-            %li= link_to "در ار تباط باش", page_path(:contact), :nav_item => :contact
-            %li.float-right{:style => "width: 250px;"}
-              =form_tag({controller: "/pages" , action: "do_search" },:format => "js",method: "get" , id:"main_search") do
-                =text_field_tag :query,nil,placeholder:"جستجوی همه چیز",:style =>"text-align: center; " , autocomplete: :off , :class => "form-control "
-              %ul{:class=>"mylist",:id=> "result"}
+            %li= link_to "تماس با ما", page_path(:contact), :nav_item => :contact
             -if user_signed_in?
               =link_to 'خروج', destroy_user_session_path, :method => :delete , :class => "btn btn-primary pull-right"
             -else
-              =link_to 'ورود', new_user_session_path , :class => "btn btn-sm btn-default pull-right"
-              =link_to 'ثبت نام', new_user_registration_path , :class => "btn btn-sm btn-default pull-right"
+              =link_to 'ورود', new_user_session_path , :class => "btn btn-sm btn-dark pull-right" , style: "margin-left: 5px;"
+              =link_to 'ثبت نام', new_user_registration_path , :class => "btn btn-sm btn-dark pull-right"
+            %li.pull-right{:style => "width: 350px;"}
+              =form_tag({controller: "/pages" , action: "do_search" },:format => "js",method: "get" , id:"main_search") do
+                =text_field_tag :query,nil,placeholder:"جستجوی کتاب ها،دسته بندی ها",:style =>"text-align: center; " , autocomplete: :off , :class => "form-control"
+              %ul{:class=>"mylist",:id=> "result"}
         - if @full_header
-          %h2 به <em>قاصدک</em> خوش آمدید
-          %p.intro دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر
+          %h5.text-center
+          %p.intro
+      .bar
+        .inner
+          %p.call اگر سوالی داری همین امروز با ما با شماره <b>8-88516067</b> تماس بگیر
 
-      - if @full_header
-        .bar
-          .inner
-            %p.call اگر سوالی داری همین امروز با ما با شماره <b>8-88516067</b> تماس بگیر
-
-            %p.offer اولین بانک کتاب ارائه دهنده تخفیف
+          %p.offer  دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر
 
 
     / Main content section
@@ -65,6 +67,7 @@
           - else
             = render 'shared/basket'
             = render 'shared/compare'
+            = render 'shared/categories'
             = render 'shared/reasons'
 
         / Primary section

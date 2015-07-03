@@ -1,0 +1,15 @@
+<div class="well wow animated  fadeInLeft">
+  <p class="empty">
+    <b>
+      دسته بندی ها
+    </b>
+  </p>
+    <% for category in Shoppe::ProductCategory.without_parent.ordered  %>
+    <tr>
+        <td>
+          <%= link_to category.name, products_path(category.permalink) %>
+          <%= nested_product_category_rows(category) %>
+        </td>
+    </tr>
+    <% end %>
+</div>

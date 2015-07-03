@@ -8,6 +8,17 @@ nav.sidebar header.logo{
   background: none !important;
 }
 
+
+.mylist{
+  width: 350px !important;
+}
+.btn-dark{
+//  color: #1abc9c;
+  color:#fff;
+  background-color:#1abc9c;
+//  border-color: #15bbbd;
+}
+
 @font-face {
   font-family: 'BYekan';
   src: url('BYekan.eot');
@@ -79,7 +90,7 @@ div#flash-alert { background:#a13361; color:#fff; text-align:center; padding:8px
 // Primary header
 //
 header.main {
-	background:image-url('header.jpg') rgb(10, 130, 134) 50% 50%;
+	background:image-url('header.jpg') #f3f3f3 50% 75%;
 	background-size:cover;
 	color:#fff;
 	font-size:0.9em;
@@ -93,8 +104,9 @@ header.main {
 		ul {
 			float:left;
 			overflow:hidden;
+            width: 100%;
 			li { float:left; margin-right:40px;}
-			li a { color:#fff; display:block;	text-decoration:none; border-bottom:3px solid transparent; padding-bottom:3px;}
+			li a { color: #000000; display:block;	text-decoration:none;  padding-bottom:3px;}
 			li a:hover { border-color:#fff;}
 			li a.noborder:hover { border-color:transparent }
 			li a.active { color:#4FB6BF; border-color:#4FB6BF;}
@@ -137,9 +149,11 @@ header.main {
 	
 	// Offer/contact bar
 	.bar {
-		background:rgba(28,109,117,0.6);
+		background:rgba(28, 109, 117, 1);
 		padding:14px 0;
 		overflow:hidden;
+      -webkit-box-shadow: 1px 1px 20px 3px #1c6d75;
+      box-shadow: 1px 1px 20px 3px #1c6d75;
 		p { background-repeat:no-repeat; background-position:0 1px;	 background-size:16px; padding-left:22px;}
 		p.call { float:left; background-image:image-url('call.svg')}
 		p.offer { float:right; background-image:image-url('tags.svg')}
@@ -149,7 +163,7 @@ header.main {
 	// The basic header
 	//
 	&.basic {
-		background:rgb(10, 130, 134);
+//		background: margin-left: 50px;;
 		nav.main { padding-top:15px; padding-bottom:15px;}
 		nav.main h1 { padding-top:15px; margin-bottom:0;}
 		nav.main ul { padding-top:8px;}
@@ -196,10 +210,12 @@ section.content {
 			margin:25px 0;
 			overflow:hidden;
 			li {
-				margin-bottom:15px;
-				width:50%;
+              margin: 18px;
+				width:42%;
 				float:right;
-				height:140px;
+              -webkit-box-shadow: 0 2px 5px 1px #0399A3;
+              box-shadow: 0 2px 5px 1px #0399A3;
+              padding: 15px;
 				div.img {
 					background-repeat:no-repeat;
 					background-size:contain;
@@ -453,7 +469,7 @@ section.content {
 		//
 		div.product {
 			overflow:hidden;
-			.img { float:right; width:45%; height:260px; background-size:contain; background-repeat:no-repeat; background-position:top right;}
+			.img {margin-left: 50px; float:right; width:45%; height:260px; background-size:contain; background-repeat:no-repeat; background-position:top right;}
 			h2 { font-size:2.0em;color:#216d74;}
 			p.intro { font-size:0.8em; color:#333; line-height:1.5; margin-top:8px;}
 			hr { margin-top:60px; border-color:#C4DDDE;}
@@ -500,7 +516,7 @@ section.content {
 					p.price { width:45%; float:left; font-size:1.3em; font-weight:bold;}
 					form {
 						margin-left:50%;
-						input { float:right; background:#256D73; border:0; font-family:$font; height:24px; padding:4px 12px; color:#fff; border-radius:4px; font-weight:bold; font-size:0.9em; margin-left:4px;}
+						input { float:right; border:0; font-family:$font; height:24px; padding:4px 12px; color:#fff; border-radius:4px; font-weight:bold; font-size:0.9em; margin-left:4px;}
 						select {
 							-webkit-appearance: none;
 							background:image-url('down-arrow.svg') #DEE9EB no-repeat 24px 11px;
@@ -656,8 +672,8 @@ section.content {
 // Footer
 //
 footer.main {
-  background-color: #99c2ec;
-  color: #171C1D;
+  background-color: rgba(28, 109, 117, 1);
+  color: #ffffff;
 	font-size:0.9em;
 	padding:40px 0;
 	overflow:hidden;
@@ -668,7 +684,7 @@ footer.main {
 		width:26%;
 		float:left;
 		line-height:1.8;
-		color:#322C2C;
+		color:#ffffff;
 	}
 	
 	div.callUs {
