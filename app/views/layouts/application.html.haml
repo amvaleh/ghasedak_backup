@@ -3,7 +3,6 @@
     %title #{@page_title} - #{Shoppe.settings.store_name}
     = favicon_link_tag 'Dandelion1.png'
     = stylesheet_link_tag :application , media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag :application
     = csrf_meta_tags
     = yield :head
   %body
@@ -112,3 +111,4 @@
             VAT registration number: GB 123 123 123.
             designer Rights Reserved.
 
+    = javascript_include_tag :application , media: 'all', 'data-turbolinks-track' => true
