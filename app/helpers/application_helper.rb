@@ -3,7 +3,7 @@ module ApplicationHelper
   def nested_product_category_spacing_adjusted_for_depth(category, relative_depth)
     depth = category.depth - relative_depth
     spacing = depth < 2 ? 0.8 : 1.5
-    ("<br><span style=' margin-right:#{20*spacing}px;'></span>"*category.depth).html_safe
+    ("<br><span style=' margin-right:#{25*spacing}px;'></span>"*category.depth).html_safe
   end
 
   def nested_product_category_rows(category, current_category = nil, link_to_current = true, relative_depth = 0)
@@ -24,7 +24,7 @@ module ApplicationHelper
           s << "</td>"
           s << "</tr>"
           s << nested_product_category_rows(child, current_category, link_to_current, relative_depth)
-          s << "<br>"
+          # s << "<br>"
         end
       end.html_safe
     else

@@ -9,6 +9,7 @@
         <td>
           <%= link_to category.name, products_path(category.permalink) %>
           <%= nested_product_category_rows(category) %>
+          <br>
         </td>
     </tr>
     <% end %>
