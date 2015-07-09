@@ -1,13 +1,18 @@
 //= require reset
 //= require comments
 //= require search
+//= require app
 //= require bootstrap.min
-
 
 nav.sidebar header.logo{
   background: none !important;
 }
 
+.slider{
+margin: auto;
+padding-bottom: 1%;
+padding-top: 1%;
+}
 
 .mylist{
   width: 400px !important;
@@ -37,7 +42,7 @@ body{
   font-family: Byekan !important;
 }
 
-html { font-family: $font; font-size:100%; background:#112326; }
+html { font-family: $font; font-size:100%; }
 body { -webkit-font-smoothing:antialiased }
 //a { color:inherit;}
 
@@ -176,7 +181,6 @@ header.main {
 //
 section.content {
 	background:#fff;
-	padding-bottom:30px;
 	overflow:hidden;
 	section.primary {
 		width:70%;

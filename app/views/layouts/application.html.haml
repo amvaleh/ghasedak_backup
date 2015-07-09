@@ -4,6 +4,8 @@
     = csrf_meta_tags
     = favicon_link_tag 'Dandelion1.png'
     = stylesheet_link_tag :application , media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag :application , media: 'all', 'data-turbolinks-track' => true
+    %script{src:"http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"}
     %meta{:name=>"description", :content=>"دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر"}
     %meta{name:"keywords" ,content:"تحویل حضوری,سفارش آنلاین,خدمات تخفیف,تحویل در محل,گاج,قلمچی,خیلی سبز,دبیرستانی,راهنمایی,پیش دانشگاهی"}
     %meta{name:"author", content:"amir mahdi valeh"}
@@ -17,7 +19,6 @@
     %meta{ property:"og:description" , content:"دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر"}
     %meta{ property:"og:site_name", content:"Ghasedakbook, Online Store"}
     %meta{ property:"og:price:currency", content:"Rials, ریال"}
-    
     = yield :head
   %body
 
@@ -68,7 +69,8 @@
 
           %p.offer  دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر
 
-
+    .slider
+      = render 'shared/slider'
     / Main content section
     %section.content
       .inner
@@ -85,7 +87,7 @@
 
         / Primary section
         %section.primary
-          = yield
+          = yield            
 
     / Footer
     %footer.main
@@ -124,5 +126,5 @@
             Instuitute registration number: 8514362.<br />
             VAT registration number: GB 123 123 123.
             designer Rights Reserved.
-
-    = javascript_include_tag :application , media: 'all', 'data-turbolinks-track' => true
+  %script{src: "assets/dpTileSlider.js"}
+  %script{src: "assets/app.js"}

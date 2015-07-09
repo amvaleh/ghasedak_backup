@@ -2,7 +2,4 @@
 - @full_header = true
 - @page_title = 'Ghasedak'
 
-.home
-  %p.browse
-  %h2
 = render 'shared/product_list', :products => @products.includes(:default_image)
