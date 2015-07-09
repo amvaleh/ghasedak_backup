@@ -4,13 +4,9 @@
       دسته بندی ها
     </b>
   </p>
-    <% for category in Shoppe::ProductCategory.without_parent.ordered  %>
-    <tr>
-        <td>
+    <% for category in Shoppe::ProductCategory.without_parent.order('created_at DESC')  %>
           <%= link_to category.name, products_path(category.permalink) %>
           <%= nested_product_category_rows(category) %>
           <br>
-        </td>
-    </tr>
     <% end %>
 </div>

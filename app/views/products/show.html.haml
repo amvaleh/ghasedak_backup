@@ -73,6 +73,6 @@
       = render 'comments/form'
     - else
       %p.alert شما باید عضو باشید تا بتوانید نظر بدهید
-      %button.btn.btn-primary.btn-block= link_to 'ثبت نام', new_user_registration_path
+      = link_to 'ثبت نام', new_user_registration_path , class: "btn btn-primary btn-block"
 
 

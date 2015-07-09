@@ -1,9 +1,23 @@
 %html
   %head
     %title #{@page_title} - #{Shoppe.settings.store_name}
+    = csrf_meta_tags
     = favicon_link_tag 'Dandelion1.png'
     = stylesheet_link_tag :application , media: 'all', 'data-turbolinks-track' => true
-    = csrf_meta_tags
+    %meta{:name=>"description", :content=>"دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر"}
+    %meta{name:"keywords" ,content:"تحویل حضوری,سفارش آنلاین,خدمات تخفیف,تحویل در محل,گاج,قلمچی,خیلی سبز,دبیرستانی,راهنمایی,پیش دانشگاهی"}
+    %meta{name:"author", content:"amir mahdi valeh"}
+    %meta{name:"author", content:"mohamad reza pasha"}
+    %link{rel:"publisher", href:"https://plus.google.com/+MehDValeh"}
+    %link{rel:"publisher", href:"https://plus.google.com/+MehDValeh"}
+    %meta{ property:"og:title", content:"#{@page_title}"}
+    %meta{ property:"og:type", content:"book"}
+    %meta{ property:"og:url" , content:"http://ghasedakbook.com"}
+    %meta{ property:"og:image" ,content:"http://ghasedakbook.com/assets/logo-66a9901838a41ae0d66bcf80119ddfa4.png"}
+    %meta{ property:"og:description" , content:"دسته بندی ها را بگرد و کتاب مورد علاقت رو پیدا کن، با چند کلیک سفارش بده، دم در خونه تحویل بگیر"}
+    %meta{ property:"og:site_name", content:"Ghasedakbook, Online Store"}
+    %meta{ property:"og:price:currency", content:"Rials, ریال"}
+    
     = yield :head
   %body
 
@@ -41,7 +55,7 @@
             -else
               =link_to 'ورود', new_user_session_path , :class => "btn btn-sm btn-dark pull-right" , style: "margin-left: 5px;"
               =link_to 'ثبت نام', new_user_registration_path , :class => "btn btn-sm btn-dark pull-right"
-            %li.pull-right{:style => "width: 350px;"}
+            %li.pull-right{:style => "width: 400px;"}
               =form_tag({controller: "/pages" , action: "do_search" },:format => "js",method: "get" , id:"main_search") do
                 =text_field_tag :query,nil,placeholder:"جستجوی کتاب ها،دسته بندی ها",:style =>"text-align: center; " , autocomplete: :off , :class => "form-control"
               %ul{:class=>"mylist",:id=> "result"}

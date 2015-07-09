@@ -18,6 +18,7 @@ gem 'devise', '~> 3.4.0'
 gem 'faker'
 #gem 'shoppe' , :git => "http://github.com/amvaleh/myshoppe.git" 
 #, :git => "http://github.com/amvaleh/shoppe.git"
+
 gem 'thin'
 gem 'byebug'
 gem 'bcrypt-ruby'

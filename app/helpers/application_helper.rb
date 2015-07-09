@@ -3,15 +3,13 @@ module ApplicationHelper
   def nested_product_category_spacing_adjusted_for_depth(category, relative_depth)
     depth = category.depth - relative_depth
     spacing = depth < 2 ? 0.8 : 1.5
-    ("<br><span style=' margin-right:#{25*spacing}px;'></span>"*category.depth).html_safe
+    ("<br><span style=' margin-right:#{40*spacing}px;'></span>"*category.depth).html_safe
   end
 
   def nested_product_category_rows(category, current_category = nil, link_to_current = true, relative_depth = 0)
     if category.present? && category.children.count > 0
       String.new.tap do |s|
-        category.children.ordered.each do |child|
-          s << "<tr>"
-          s << "<td>"
+        category.children.order('created_at DESC').each do |child|
           if child == current_category
             if link_to_current == false
               s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{child.name} (#{t('shoppe.product_category.nesting.current_category')})"
@@ -21,10 +19,8 @@ module ApplicationHelper
           else
             s << "#{nested_product_category_spacing_adjusted_for_depth child, relative_depth}#{link_to(child.name, products_path(child.permalink)).html_safe}"
           end
-          s << "</td>"
-          s << "</tr>"
           s << nested_product_category_rows(child, current_category, link_to_current, relative_depth)
-          # s << "<br>"
+          # s << "</div>"
         end
       end.html_safe
     else
