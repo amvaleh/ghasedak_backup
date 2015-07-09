@@ -50,7 +50,6 @@
                     = nested_product_category_rows(category)
             %li= link_to "مزایای خرید از ما", page_path(:why), :nav_item => :why
             %li= link_to "سوالات متداول", page_path(:faqs), :nav_item => :faqs
-            %li= link_to "تماس با ما", page_path(:contact), :nav_item => :contact
             -if user_signed_in?
               =link_to 'خروج', destroy_user_session_path, :method => :delete , :class => "btn btn-primary pull-right"
             -else
@@ -105,7 +104,7 @@
 
         .callUs
           %p سوالی داری؟ همین الان زنگ بزن
-          %p.number 88 51 60 67-8
+          %p.number 88516067-8
           %p ما تا ساعت ۱۲ باز هستیم، جمعه تا جمعه
 
           / Links to social media
