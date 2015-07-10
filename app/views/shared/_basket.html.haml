@@ -1,6 +1,6 @@
 .basket.wow.animated.fadeInLeft
   - if has_order? && current_order.has_items?
-    %p.quantity  در سبد خرید شما <b>#{pluralize current_order.total_items , 'کالا'}</b>
+    %p.quantity  در سبد خرید شما <b> #{current_order.total_items} کالا</b>
     %p.amount   جمعا به مبلغ &nbsp; <b> #{current_order.total_before_tax}  ریال </b>&nbsp; قرار دارد
     %p.buttons
       = link_to "سبد خرید من", basket_path
