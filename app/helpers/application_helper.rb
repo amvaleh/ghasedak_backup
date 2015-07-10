@@ -85,5 +85,17 @@ module ApplicationHelper
       "on " + date.strftime("%A")
     end
   end
+
+
+
+  def hide_number(number)
+    num = number
+    num[4] = 'x'
+    num[5] = 'x'
+    num[6] = 'x'
+    num[7] = 'x'
+    num = '**' + num + '**'
+    return num
+  end
   
 end

@@ -64,7 +64,7 @@
     %hr
     - @comments.each do |cm|
       %div.alert.alert-info.product
-        %span.btn-info= cm.user.phone_number
+        %span.btn-info= hide_number(cm.user.phone_number) 
         %span.pull-left= timeago_tag(cm.created_at , :lang => :fa )
         %p= cm.content
         -if current_user == cm.user
