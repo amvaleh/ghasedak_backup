@@ -5,13 +5,10 @@
   - unless @product_category.description.blank?
     %p.intro= @product_category.description
   - if @products.empty?
-    %p.noProducts هیچ محصولی در این دسته بندی نمی باشد
+    -#%p.noProducts هیچ محصولی در این دسته بندی نمی باشد
   - else
     = render 'shared/product_list', :products => @products
   -if @product_category.children.any?
-    -#-for category in @product_category.children
-      -products = category.products.includes(:default_image, :product_categories, :variants).root.active
-      = render 'shared/product_list', :products => products
     -for category in @product_category.children
       -products = category.products.includes(:default_image, :product_categories, :variants).root.active
       =render 'shared/product_list' , :products => products
