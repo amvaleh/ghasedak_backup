@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   
+
   before_filter do
     if params[:category_id]
       @product_category = Shoppe::ProductCategory.where(:permalink => params[:category_id]).first!
@@ -10,7 +11,9 @@ class ProductsController < ApplicationController
   end
   
   def index
+
     @products = @product_category.products.includes(:default_image, :product_categories, :variants).root.active
+
   end
 
   def compare
@@ -45,4 +48,6 @@ class ProductsController < ApplicationController
     end
   end
   
+
+
 end
