@@ -1,0 +1,27 @@
+<p>
+  نمایش نتایج جستجوی شما:
+</p>
+
+
+<%#=render 'shared/product_list', :products => @result2.includes(:default_image) %>
+
+
+
+<%=render 'shared/product_list', :products => @result.includes(:default_image) %>
+
+
+<div class="text-center">
+  <%=paginate @result%>
+</div>
+
+<% @result2.each do |res| %>
+    <div class="well">
+      <%=image_tag "category.png" , class:"img-rounded pull-left" %>
+      <%= link_to(products_path(res.permalink), {:class => "li_link"}) do %>
+          <small>دسته بندی</small>
+          <span class="cat_style">
+            <%=res.name%>
+          </span>
+      <%end%>
+    </div>
+<% end %>

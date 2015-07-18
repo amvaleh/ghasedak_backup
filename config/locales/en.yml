@@ -18,8 +18,23 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  views:
+    pagination:
+      first: "اولین&raquo;"
+      last: "&laquo;آخرین "
+      previous: "قبلی&rsaquo; "
+      next: "&lsaquo;بعدی"
+      truncate: "&hellip;"
+    helpers:
+      page_entries_info:
+        one_page:
+          display_entries:
+            zero: "No %{entry_name} found"
+            one: "نمایش <b>1</b> %{entry_name}"
+            other: "نمایش <b>all %{count}</b> %{entry_name}"
+        more_pages:
+          display_entries: "نمایش %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> در کل"
   hello: "Hello world"
   number:
       currency:
@@ -27,3 +42,5 @@ en:
               separator: "."
               delimiter: ","
               precision: 0
+
+

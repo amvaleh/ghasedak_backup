@@ -7,3 +7,5 @@
     %p.noProducts There are no products matching your filter
   - else
     = render 'shared/product_list', :products => @products
+.text-center
+  =paginate @products

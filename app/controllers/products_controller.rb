@@ -11,9 +11,7 @@ class ProductsController < ApplicationController
   end
   
   def index
-
-    @products = @product_category.products.includes(:default_image, :product_categories, :variants).root.active
-
+    @products = @product_category.products.includes(:default_image, :product_categories, :variants).root.active.page(params[:page]).per(6)
   end
 
   def compare
@@ -21,7 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def filter
-    @products = Shoppe::Product.active.with_attributes(params[:key].to_s, params[:value].to_s)
+    @products = Shoppe::Product.active.with_attributes(params[:key].to_s, params[:value].to_s).page(params[:page]).per(6)
   end
   
   def categories

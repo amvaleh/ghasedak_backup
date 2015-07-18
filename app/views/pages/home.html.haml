@@ -1,5 +1,7 @@
 - active_nav_item :home
 - @full_header = true
 - @page_title = 'Ghasedak'
-
 = render 'shared/product_list', :products => @products.includes(:default_image)
+.col-md-12.text-center
+  =paginate @products
+  -#, :theme => "bootstrap3"

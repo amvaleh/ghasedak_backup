@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'rails', '4.2.0.beta2'
 gem 'rails-timeago', '~> 2.0'
+# gem 'will_paginate', '~> 3.0.6'
+gem 'kaminari'
 gem 'sqlite3'
 gem 'acts_as_commentable'
 #gem 'sprockets-rails' , '~> 2.0'

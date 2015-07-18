@@ -1,6 +1,7 @@
 //= require reset
 //= require comments
 //= require search
+//= require pagination
 //= require bootstrap.min
 
 nav.sidebar header.logo{
@@ -211,7 +212,6 @@ section.content {
 		ul.products {
 			font-size:0.9em;
 			margin:25px 0;
-			overflow:hidden;
 			li {
               margin: 18px;
 				width:42%;

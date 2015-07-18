@@ -1,4 +1,4 @@
-.basket.wow.animated.fadeInLeft
+.basket.wow.animated.zoomIn
   %p.empty <b> لیست مقایسه شما</b>
   - if not session[:object_one].nil?
   - @product1 = Shoppe::Product.where(:id =>  session[:object_one]).first

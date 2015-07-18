@@ -2,14 +2,21 @@
   - for product in products.includes(:default_image, :product_categories)
     %li.wow.animated.fadeInDown
       .img{:style => product.default_image ? "background-image:url(#{product.default_image.path})" : ''}
-      %h4= link_to product.name, product_path(product.product_category.permalink, product.permalink), class: ""
       -cat = Shoppe::ProductCategorization.where(:product_id => product.id).first.product_category
-      %small=link_to cat.name , products_path(cat.permalink)
-      %p.info= truncate product.short_description, :length => 90
+      %b
+        -#=link_to product.name, product_path(product.product_category.permalink, product.permalink), class: "text-info"
+      %a{:tabindex=>"0",role:"button",  "data-placement"=>"down" , "data-toggle"=>"popover", "data-trigger"=>"focus" ,title:"#{cat.name}", "data-content"=>"#{product.short_description}"}=product.name
+      %br
+      %br
+      -#%small=link_to cat.name , products_path(cat.permalink) , :class => "text-"
+      %p.price= number_to_currency product.price
+
+      -#%p.info
+        -#= truncate product.short_description, :length => 90
+      -#%br
       %p
         = link_to "نمایش", product_path(product.product_category.permalink, product.permalink), class: "btn btn-info btn-sm"
         - if product.orderable?
           = link_to "اضافه به سبد", buy_product_path(product.product_category.permalink, product.permalink), :class => 'add btn btn-primary btn-xs', :method => :post
-      = link_to "مقایسه با یک کالای دیگر", add_object_path(:product => product) , class: "pull-left btn btn-xs btn-link"
-      %p.price= number_to_currency product.price
-      
+      .col-md-12
+        = link_to "مقایسه با یک کالای دیگر", add_object_path(:product => product) , class: "pull-left btn btn-xs btn-link"
